@@ -1,0 +1,33 @@
+{% extends 'rv/base.html' %}
+
+{% block container %}
+
+
+<div class="col d-flex justify-content-center mx-1" style="margin-top: 30%;">
+        <form method="POST" enctype="multipart/form-data" data-ajax="false">
+            {% csrf_token %}
+              <div class="    container text-info bg-light">
+                {% load widget_tweaks %} 
+                {% for field in profil %}
+                    <div class="form-group">
+                      {{field.errors}}
+                        {{ field.label_tag }} 
+                        {% render_field field class="form-control" %} 
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">
+                               {{ field.help_text }}
+                            </small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+              
+                
+              <input class="btn btn-outline-info mt-2" type="submit" style="width: 100%;" value="creer">
+            
+             
+          </form> 
+    </div>
+
+    
+{% endblock container %}
+    

@@ -1,0 +1,46 @@
+{% extends 'rv/base.html' %}
+
+{% block container %}
+
+
+<div class="container d-flex justify-content-center" style="margin-top: 30%;">
+        <form method="POST" enctype="multipart/form-data" data-ajax="false">
+            {% csrf_token %}
+              <div class="    container text-info bg-light">
+                {% load widget_tweaks %} 
+                {% for field in form %}
+                    <div class=" row form-group m-1" style="font-size: 80%;">
+                      {{field.errors}}
+                        {{ field.label_tag }} 
+                        {% render_field field class="form-control" %} 
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">
+                               {{ field.help_text }}
+                            </small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                {% for field in doctor %}
+                    <div class=" row form-group m-1" style="font-size: 80%;">
+                      {{field.errors}}
+                        {{ field.label_tag }} 
+                        {% render_field field class="form-control" %} 
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">
+                               {{ field.help_text }}
+                            </small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+             
+            
+               <input class="btn btn-outline-info mt-2  mx-1 " style="width: 100%;" type="submit" value="creer">
+            
+            </div>
+          </form> 
+        
+   
+
+    
+{% endblock container %}
+    

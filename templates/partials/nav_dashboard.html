@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <title>Document</title>
+    <style>
+        li a:hover{
+            color:rgb(4, 96, 96) !important;
+        }
+        #dash{
+            color:rgb(35, 190, 241) !important;
+            text-decoration: none;
+            font-size: 100%;
+        }
+        #dash:hover{
+            color:white !important;
+            background-color:rgb(35, 190, 241) ;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column ">
+   <div class="d-flex flex-column" style="width:30%">
+            
+               <div >
+                <img class="w-100"src="{% static 'image/images_rv.png'%}" alt="">
+               </div>
+            
+            <section class="w-100 ">
+              <div class="text-center my-2    ">
+                <a   id="dash" href="{% url 'dashboard'%}" >Dashboard</a>
+            </div>
+                <ul style=" background-color: rgb(35, 190, 241)" class="navbar-nav  d-flex flex-column  ">
+                     
+                     {% if request.user.profil.avatar%}
+                     
+                <li class=" container-fluid  d-flex justify-content-center ">
+                <img style="height: 120px;width: 100px;" class="nav-link text-white   rounded-circle"  src="{{request.user.profil.avatar.url}}" alt="profile">
+                </li>
+                {% else %}
+                <li class=" container-fluid  d-flex justify-content-center ">
+                <img style="height: 120px;width: 100px;" class="nav-link text-white   rounded-circle"  src="{% static 'image/avatar.png'%}" alt="profile">
+                </li>
+                {% endif %}
+                <li  class=" container-fluid ">
+                    <a class="nav-link text-white" href="{% url 'index'%}"><i class="fa-solid fa-heart-pulse"></i>  Acceuil</a>
+                </li>
+                <li   class=" container-fluid">
+                    <a class="nav-link text-white" href="{% url 'list_rv'%}"><i class="fa-solid fa-calendar"></i> Mes rendez-vous</a>
+                </li>
+                <li  class=" container-fluid ">
+                    <a class="nav-link text-white" href="{% url 'list_patients'%}"><i class="fa-solid fa-hospital-user"></i>  Mes patients</a>
+                </li>
+                <li  class=" container-fluid ">
+                    <a class="nav-link text-white" href="{% url 'my_account'%}"><i class="fa-solid fa-user-doctor"></i>  Mon compte</a>
+                </li>
+                <li class=" container-fluid ">
+                    <a class="nav-link text-white" href="{% url 'logout'%}" ><i class="fa fa-sign-out" aria-hidden="true"></i>
+                        deconnexion</a>
+                </li>
+                </ul>
+                </div>
+    </section>
+  </div> 
+</body>
+</html>

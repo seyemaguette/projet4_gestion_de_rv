@@ -1,0 +1,42 @@
+{% extends "./base.html" %}
+{% block title %} Acceuil{% endblock title %}
+{% block container %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+               
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert">
+  {{ message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+              
+
+      <h1 class="display-4">Rendez-Vous</h1>
+      <p class="lead">La gestion de rendez-vous , permettra aux utilisateurs de prendre et de gérer leurs rendez-vous.</p>
+        
+       {% if request.user.is_authenticated %}
+          
+      <p class="alert alert-success">Vous etes connectes</p>
+       {% else %}
+          
+      <div><a class=" text-info" href="{%url 'login'%}">Se connecter</a></div>
+      <div><a class=" text-info" href="{%url 'new_doctor'%}">S'incrire</a></div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="col d-flex justify-content-center">
+
+    
+    {% comment %} <a class="btn btn-info" href="{url 'new_doctor'}">S'incrire</a> {% endcomment %}
+    
+    </div>
+  <div class="col d-flex justify-content-center">
+
+    {% comment %} <a class="btn btn-info" href="{url 'login'}">Se connecter</a> {% endcomment %}
+    
+    </div>
+    
+{% endblock container %}

@@ -1,0 +1,45 @@
+{% extends './base.html' %}
+
+{% block title %}
+    Mon compte
+{% endblock title %}
+    
+
+{% block container %}
+ 
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert">
+  {{ message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+<div class="jumbotron jumbotron-fluid mt-1 ml-2 ">
+    <div class="container">
+      <h1 class="display-4">Rendez-Vous</h1>
+      <p class="lead">La gestion de rendez-vous , permettra aux utilisateurs de prendre et de gérer leurs rendez-vous.</p>
+    </div>
+  </div>
+<section>
+    
+          <div class="card-body bg-light  border p-2 mx-2" >  
+              <p class="card-text ">Nom d'utilisateur :    <span class="text-info"> {{request.user.username}}</span>   </p>
+              <p class="card-text text-capitalize ">Prenom : <span class="text-info"> {{request.user.first_name}}</span></p>
+              <p class="card-text text-capitalize ">Nom :  <span class="text-info"> {{request.user.last_name}}</span></p>
+              <p class="card-text  "> Email : <span class="text-info"> {{request.user.email}}</span></p>
+              <p class="card-text text-capitalize ">Fonction : <span class="text-info"> {{doctor.role}}</span></p>
+              <p class="card-text text-capitalize ">Adresse : <span class="text-info"> {{doctor.address}}</span></p>
+              <p class="card-text text-capitalize ">Telephone : <span class="text-info"> {{doctor.phone}}</span></p>
+              <p class="card-text "> {{doctor.email}} </p>
+              <p class="card-text "> {{doctor.username}} </p>
+              
+              <div>
+                <a class="a text-decoration-none text-info m-2 bg-white"  style="font-size: 76%;" href="{% url 'update_doctor'%}"> Modifier vos infos</a>
+                <a class="a text-decoration-none text-info m-2 bg-white"  style="font-size: 76%;" href="{% url 'update_profil'%}"> Modifier votre photo</a>
+              </div>
+             </div>
+            </div> 
+</section>
+{% endblock container %}
+    

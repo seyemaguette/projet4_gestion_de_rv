@@ -1,0 +1,31 @@
+{% extends "./base.html" %}
+{% block title %} Dashboard{% endblock title %}
+
+{% block container %}
+
+
+<section style="margin-left: 30px; ">
+    <div class="row  mt-4 ">
+
+    
+        <div class="my-5 w-75">
+        <a class="card text-decoration-none " style="background-color: deepskyblue;" href="{% url 'list_patients'%}" >
+            <p style="height: 100px;text-align: center;font-size: larger;">
+                <i class="fa-solid fa-hospital-user"></i>   Mes patients
+            </p>
+           </a>
+                
+       </div>  
+       
+        <div class="w-75" >
+           <a class="card text-decoration-none " style="background-color: deepskyblue;" href="{% url 'list_rv'%}" >
+            <p style="height: 100px;text-align: center;font-size: larger;">
+                <i class="fa-solid fa-calendar"></i>   Mes Rendez-vous
+            </p>
+           </a>
+                
+       </div>  
+       
+</section>
+
+{% endblock container %}

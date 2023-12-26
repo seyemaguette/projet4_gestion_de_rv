@@ -1,0 +1,39 @@
+{% extends '../base.html' %}
+
+{% block title %}
+    Mon compte
+{% endblock title %}
+    
+
+{% block container %}
+ 
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags}} alert-dismissible fade show" role="alert">
+  {{ message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+<section class="mx-5  ">
+     
+  <div class=" row  card-body bg-light  border p-2 mt-5"  >
+              <p class="card-text text-capitalize ">Titre : <span class="text-info"> {{rvs.title}}</span></p>
+              <p class="card-text text-capitalize ">Avec :  <span class="text-info"> {{rvs.patient}}</span></p>
+              <p class="card-text text-capitalize ">Email :  <span class="text-info"> {{rvs.email}}</span></p>
+              <p class="card-text text-capitalize ">Date :    <span class="text-info"> {{rvs.date}}</span>   </p>
+              <p class="card-text text-capitalize ">Heure : <span class="text-info"> {{rvs.hours}}</span></p>
+              <p class="card-text text-capitalize ">Lieu : <span class="text-info"> {{rvs.place}}</span></p>
+            
+              
+              <div>
+                <a class="btn btn-outline-danger" href="{% url 'delete_rv' rvs.id%}"><i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-outline-warning" href="{% url 'update_rv' rvs.id %}"> <i class="fa fa-pencil-square" aria-hidden="true"></i> 
+                </a> 
+              </div>
+             </div>
+</section>
+{% endblock container %}
+    
