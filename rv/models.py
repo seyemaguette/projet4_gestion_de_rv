@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from phonenumber_field.modelfields import PhoneNumberField
+# from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import RegexValidator
 
 from PIL import Image
@@ -22,11 +22,17 @@ Role=(
     )
    
 
-from django.core.validators import RegexValidator
 
-
-        
-
+class Personne(models.Model):
+   
+    
+    name=models.CharField(verbose_name=("name"),  max_length=20,)
+    age=models.CharField(verbose_name=("age"),  max_length=16,)
+ 
+         
+    def __str__(self):
+        return self.name
+    
 
 class User(AbstractUser):
     email=models.EmailField(unique=True,null=True)
@@ -45,7 +51,7 @@ class Doctor(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True,related_name='doctor')
     
     address=models.CharField(verbose_name=("Adresse"),  max_length=20,)
-    phone=PhoneNumberField(verbose_name=("Telephone"),  max_length=16,)
+    phone=models.CharField(verbose_name=("Telephone"),  max_length=16,)
 
     role=models.CharField( verbose_name=("Fonction"),choices=Role, max_length=20,)
     
@@ -94,10 +100,9 @@ class Patient(models.Model):
       
     first_name=models.CharField(verbose_name='Prenom',max_length=60)
     last_name=models.CharField(verbose_name='Nom',max_length=60)
-    age= models.IntegerField(verbose_name='Age', validators=[
-            MinValueValidator(0)])
+    age= models.PositiveIntegerField ()
     address=models.CharField(verbose_name=("Adresse"),  max_length=20,)
-    phone=PhoneNumberField(verbose_name=("Telephone"),  max_length=16,null=True)
+    phone=models.CharField(verbose_name=("Telephone"),  max_length=16,null=True)
     doctor=models.ForeignKey(Doctor, on_delete=models.CASCADE)
     archive=models.BooleanField(default=False)
     email=models.EmailField(unique=True,null=True)
@@ -112,7 +117,8 @@ class Patient(models.Model):
 
 class Rv(models.Model):
         title=models.CharField( verbose_name='Titre', max_length=50)
-        patient=models.CharField( verbose_name='Avec Qui', max_length=50)
+        patient=models.ForeignKey(Patient, on_delete=models.CASCADE)
+        # patient=models.CharField( verbose_name='Avec Qui', max_length=50)
         email=models.EmailField( verbose_name='Email',null=True)
         date=models.DateField( verbose_name= 'Date')
         hours= models.TimeField(  verbose_name='Heure' )
@@ -124,5 +130,7 @@ class Rv(models.Model):
              return f'{self.title} '
         
         
+        def hello(self) :
+          return "bonjour"
 
         

@@ -3,7 +3,46 @@
 {% block container %}
 
 
-<div class=" container d-flex justify-content-center text-info bg-light my-5 ">
+<div  class="container   d-flex justify-content-center ">
+    <form class="w-50 " method="POST" enctype="multipart/form-data" data-ajax="false">
+        {% csrf_token %}
+          <div class="  row my-5 text-info">
+            {% load widget_tweaks %} 
+            {% for field in form %}
+                <div>
+                  {{field.errors}}
+                    {{ field.label_tag }} 
+                    {% render_field field class="form-control" %} 
+                    {% if field.help_text %}
+                        <small class="form-text text-muted">
+                           {{ field.help_text }}
+                        </small>
+                    {% endif %}
+                    {% endfor %}
+                    {% for field in doctor %}
+                  
+                    {{field.errors}}
+                      {{ field.label_tag }} 
+                      {% render_field field class="form-control" %} 
+                      {% if field.help_text %}
+                          <small class="form-text text-muted">
+                             {{ field.help_text }}
+                          </small>
+                      {% endif %}
+                   
+                    {% endfor %}
+                    
+                    
+                  </div>
+                  <input class=" btn btn-outline-info mt-3 text-center   " style="width:100%" type="submit" value="creer">
+  
+        
+         
+      </form> 
+  </div>
+
+
+{% comment %} <div class=" container d-flex justify-content-center text-info bg-light my-5 ">
 
       <form class="w-75 " method="POST" enctype="multipart/form-data" data-ajax="false">
           {% csrf_token %}
@@ -40,7 +79,7 @@
         </form> 
      
     
-    </div>
+    </div> {% endcomment %}
 
     
 {% endblock container %}

@@ -21,8 +21,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('rv.urls'))
+    path('', include('rv.urls')),
+    # path('personne/', include('rv.urls')),
+    # path('patient/', include('rv.urls')),
 ]
- 
+# endpoint = 'http://127.0.01:8000/rv/'
+# endpoint = 'http://127.0.01:8000/personne/'
+endpoint = 'http://127.0.01:8000/'
+
 #media
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

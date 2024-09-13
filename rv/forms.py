@@ -1,12 +1,17 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, Doctor, Role, Profil, Patient,Rv
-from phonenumber_field.widgets import PhoneNumberPrefixWidget
-from phonenumber_field.modelfields import PhoneNumberField
-from django.core.validators import RegexValidator
-
-
+from .models import Personne,User, Doctor, Role, Profil, Patient,Rv
+# from phonenumber_field.widgets import PhoneNumberPrefixWidget
+# from phonenumber_field.modelfields import PhoneNumberField
 from django.core.exceptions import ValidationError
+
+class PersonneForm(forms.ModelForm):
+    class Meta:
+        model=Personne
+        fields=('name','age')
+
+     
+
 
 class UserCreation(UserCreationForm):
 
@@ -75,9 +80,9 @@ class DoctorForm(forms.ModelForm):
     class Meta:
         model=Doctor
         fields=('address','phone','role')
-        widgets = {                         
-            'phone': PhoneNumberPrefixWidget(initial='SN',),
-        }
+        # widgets = {                         
+        #     'phone': forms.CharField(label='SN',),
+        # }
 
         
 class UpdateDoctorForm(forms.ModelForm):
@@ -103,13 +108,9 @@ class CreatePatient(forms.ModelForm):
     class Meta:
         model=Patient
         fields=('first_name','last_name','email','phone','age','address',)
-        widgets = {                         
-            'phone': PhoneNumberPrefixWidget(initial='SN',),
-        }
-
+        
 
 class CreateRv(forms.ModelForm):
-    # date= forms.DateField(label='Date', widget=forms.DateInput())
 
     class Meta:
         model=Rv
@@ -137,66 +138,6 @@ class login_form(forms.Form):
 
  
     
-
-
-
-# class Doctorsignup(UserCreationForm):
-  
-#     username = forms.CharField(
-#         label = 'Nom d"utilisateur',
-#         widget=forms.TextInput(
-#             attrs={
-#                 "class": "form-control"}))
-#     password1 = forms.CharField(
-#        label = 'Mot de passe',       
-#        widget=forms.PasswordInput(
-#             attrs={
-#                 "class": "form-control"})) 
-#     password2 = forms.CharField(
-#        label = 'Confirmation du mot de passe',       
-#        widget=forms.PasswordInput(
-#             attrs={
-#                 "class": "form-control"}))
-#     is_doctor=forms.BooleanField(label='',widget=forms.HiddenInput() ,initial=True)
-    
-#     class Meta():
-        
-#         model= Doctor
-#         fields= ('username','profil','first_name','last_name','email',
-#                 'phone','address','role','password1' ,'password2','is_doctor')
-
-# class Doctorupdate(PasswordChangeForm):
-#     # username = forms.CharField(
-#     #     label = 'Nom d"utilisateur',
-#     #     widget=forms.HiddenInput(
-#     #         attrs={
-#     #             "class": "form-control"}))
-#     password = forms.CharField(
-#        label = 'Nouveau mot de passe',       
-#        widget=forms.PasswordInput(
-#             attrs={
-#                 "class": "form-control"})) 
-#     password1 = forms.CharField(
-#        label = 'Mot de passe',       
-#        widget=forms.PasswordInput(
-#             attrs={
-#                 "class": "form-control"})) 
-    
-#     password2 = forms.CharField(
-#        label = 'Confirmation du mot de passe',       
-#        widget=forms.PasswordInput(
-#             attrs={
-#                 "class": "form-control"}))
-#     is_doctor=forms.BooleanField(label='',widget=forms.HiddenInput() ,initial=True)
-    
-#     class Meta():
-        
-#         model= Doctor
-#         fields= ('profil','first_name','last_name','email',
-#                 'phone','address','password1' ,'password2','is_doctor')
-        
-
-        
 
 
 
