@@ -114,7 +114,7 @@ class CreateRv(forms.ModelForm):
 
     class Meta:
         model=Rv
-        fields=('title','patient','email','date','hours','place',)
+        fields=('title','patient','date','hours','place',)
 
      
    

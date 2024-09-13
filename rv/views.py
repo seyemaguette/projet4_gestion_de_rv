@@ -354,7 +354,7 @@ def create_rv(request):
                 date = date,
                 hours = hours,
                 place = place,
-                email = email,
+                email = patient.email,
                 doctor = doctor,
             )
             rv.save()
