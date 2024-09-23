@@ -22,8 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('rv.urls')),
-    # path('personne/', include('rv.urls')),
-    # path('patient/', include('rv.urls')),
+    path('api/', include('api.urls')),
 ]
 # endpoint = 'http://127.0.01:8000/rv/'
 # endpoint = 'http://127.0.01:8000/personne/'

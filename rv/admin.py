@@ -13,3 +13,4 @@ admin.site.register(Patient)
 admin.site.register(Rv)
 admin.site.register(Personne)
 
+

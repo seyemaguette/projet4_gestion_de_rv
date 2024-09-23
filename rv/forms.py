@@ -111,6 +111,12 @@ class CreatePatient(forms.ModelForm):
         
 
 class CreateRv(forms.ModelForm):
+    # date = forms.DateField(
+    #     label = 'Date',
+    #     widget=forms.SelectDateWidget(
+    #         attrs={
+    
+    #             "class": "form-control"}))
 
     class Meta:
         model=Rv
